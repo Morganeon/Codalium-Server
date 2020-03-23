@@ -1,3 +1,5 @@
 
 .vs/
 *.meta
+GameServer/bin/
+GameServer/obj/
