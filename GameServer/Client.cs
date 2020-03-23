@@ -11,20 +11,12 @@ using System.Threading.Tasks;
 
 namespace GameServer
 {
-    // Player to NPC context when initiating dialogs and such
-    public class PlayerToNPCInteractionContext
-    {
-        public int currentScreen;
-        public Client parent;
-    }
-
 
     public class Client
     {
         private TcpClient client;
         private SslStream stream;
         private long timestamp;
-        public  PlayerToNPCInteractionContext context;
 
         public int id;
         public long rid=-1;
@@ -33,8 +25,6 @@ namespace GameServer
         {
             this.client = client;
             this.stream = stream;
-            context = new PlayerToNPCInteractionContext();
-            context.parent = this;
             HeartBeat();
         }
 
@@ -92,64 +82,6 @@ namespace GameServer
             client.Close();
             //Save();
         }
-        /*
-        public void ReadMessage( out string tag, out string[] messages)
-        {
-            byte[] btag = new byte[3];
-            stream.Read(btag, 0, 3);
-            tag = Encoding.ASCII.GetString(btag);
 
-            byte[] bnbParam = new byte[4];
-            stream.Read(bnbParam, 0, 4);
-            Int32 nbParam = BitConverter.ToInt32(bnbParam, 0);
-
-            messages = new string[nbParam];
-
-            for (int i = 0; i < nbParam; i++)
-            {
-                byte[] blen = new byte[4];
-                stream.Read(blen, 0, 4);
-
-                Int32 len = BitConverter.ToInt32(blen, 0);
-                byte[] bmsg = new byte[len];
-                stream.Read(bmsg, 0, len);
-                messages[i] = Encoding.ASCII.GetString(bmsg);
-            }
-        }
-
-        public void Save()
-        {
-
-            byte[] bid = BitConverter.GetBytes(id);
-            IEnumerable<byte> arrays = bid;
-
-            byte[] len = BitConverter.GetBytes(username.Length);
-            byte[] bdata = Encoding.ASCII.GetBytes(username);
-
-            arrays = arrays.Concat(len).Concat(bdata);
-            byte[] tstamp = BitConverter.GetBytes(timestamp);
-
-            arrays = arrays.Concat(tstamp);
-
-            File.WriteAllBytes("D:/Database/" + username, arrays.ToArray());
-        }
-
-        public void Load()
-        {
-            if (File.Exists("D:/Database/"+username))
-            {
-                var bytes = File.ReadAllBytes("D:/Database/" + username);
-
-                id = BitConverter.ToInt64(bytes, 0);
-
-                int len = BitConverter.ToInt32(bytes, 8);
-                username = "";
-                username = Encoding.ASCII.GetString(bytes, 12, len);
-
-                long lastTime = BitConverter.ToInt64(bytes, 12 + len);
-
-                Console.WriteLine("Read: {0}",username);
-            }
-        }*/
     }
 }

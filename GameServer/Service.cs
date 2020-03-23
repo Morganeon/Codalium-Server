@@ -42,7 +42,7 @@ namespace GameServer
                 {
                     if (CheckValidity(c) == false) continue;
 
-                    if (c.HasMessage())
+                    while (c.HasMessage())
                     {
                         c.HeartBeat();
                         ProcessClient(c);
