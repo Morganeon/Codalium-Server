@@ -219,10 +219,11 @@ namespace GameServer
             }
             
             // Handling NPCs
+            /*
             foreach (NPC npc in npcList["default"])
             {
                 HandleNPC(npc, deltatime);
-            }
+            }*/
 
             // Resets refresh timer if applicable
             if (ticktoRefresh > 0.3)

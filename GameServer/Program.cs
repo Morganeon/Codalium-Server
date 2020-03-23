@@ -64,6 +64,7 @@ namespace GameServer
         {
 
             ServiceBay.Initialize();
+            
             // Map name, Navigation file, Population File
             List<Tuple<string,ByteMessage,ByteMessage>> mapsToBake = new List<Tuple<string, ByteMessage, ByteMessage>>();
 
@@ -71,11 +72,12 @@ namespace GameServer
 
             string name;
             name = "default";
-            mapsToBake.Add(new Tuple<string, ByteMessage, ByteMessage>(name, new ByteMessage(database+name+"-nav"), new ByteMessage(database+name+"-pop")));
+            //mapsToBake.Add(new Tuple<string, ByteMessage, ByteMessage>(name, new ByteMessage(database+name+"-nav"), new ByteMessage(database+name+"-pop")));
+            
 
-
-            NavigationThread.Populate(mapsToBake);
-            ServiceBay.gameService.CreateNPCs(mapsToBake);
+            //NavigationThread.Populate(mapsToBake);
+            //ServiceBay.gameService.CreateNPCs(mapsToBake);
+            
             
             Thread Navigator = new Thread(new ThreadStart(NavigationThread.Run));
             Navigator.Start();

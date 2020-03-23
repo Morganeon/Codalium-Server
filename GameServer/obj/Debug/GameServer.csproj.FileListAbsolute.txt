@@ -5,3 +5,10 @@ D:\Projects\2DMobileGame\Assets\GameServer\GameServer\obj\Debug\GameServer.cspro
 D:\Projects\2DMobileGame\Assets\GameServer\GameServer\obj\Debug\GameServer.csproj.CoreCompileInputs.cache
 D:\Projects\2DMobileGame\Assets\GameServer\GameServer\obj\Debug\GameServer.exe
 D:\Projects\2DMobileGame\Assets\GameServer\GameServer\obj\Debug\GameServer.pdb
+D:\Projects\Codalium\Assets\GameServer\Codalium Server\GameServer\bin\Debug\GameServer.exe.config
+D:\Projects\Codalium\Assets\GameServer\Codalium Server\GameServer\bin\Debug\GameServer.exe
+D:\Projects\Codalium\Assets\GameServer\Codalium Server\GameServer\bin\Debug\GameServer.pdb
+D:\Projects\Codalium\Assets\GameServer\Codalium Server\GameServer\obj\Debug\GameServer.csprojAssemblyReference.cache
+D:\Projects\Codalium\Assets\GameServer\Codalium Server\GameServer\obj\Debug\GameServer.csproj.CoreCompileInputs.cache
+D:\Projects\Codalium\Assets\GameServer\Codalium Server\GameServer\obj\Debug\GameServer.exe
+D:\Projects\Codalium\Assets\GameServer\Codalium Server\GameServer\obj\Debug\GameServer.pdb
