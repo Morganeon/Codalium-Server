@@ -1,0 +1,7 @@
+D:\Projects\2DMobileGame\Assets\GameServer\GameServer\bin\Debug\GameServer.exe.config
+D:\Projects\2DMobileGame\Assets\GameServer\GameServer\bin\Debug\GameServer.exe
+D:\Projects\2DMobileGame\Assets\GameServer\GameServer\bin\Debug\GameServer.pdb
+D:\Projects\2DMobileGame\Assets\GameServer\GameServer\obj\Debug\GameServer.csprojAssemblyReference.cache
+D:\Projects\2DMobileGame\Assets\GameServer\GameServer\obj\Debug\GameServer.csproj.CoreCompileInputs.cache
+D:\Projects\2DMobileGame\Assets\GameServer\GameServer\obj\Debug\GameServer.exe
+D:\Projects\2DMobileGame\Assets\GameServer\GameServer\obj\Debug\GameServer.pdb
