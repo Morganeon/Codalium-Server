@@ -8,11 +8,10 @@ namespace GameServer.Components
 {
     class Components
     {
-    
+        public virtual void Update(float dt)
+        {
+
+        }
     }
 
-    public virtual void Update()
-    {
-
-    }
 }
