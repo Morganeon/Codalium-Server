@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameServer.Components
 {
-    class Components
+    public class Component
     {
         public virtual void Update(float dt)
         {

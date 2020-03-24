@@ -7,7 +7,7 @@ using System.Numerics;
 
 namespace GameServer.Components
 {
-    class Transform
+    public class Transform : Component
     {
 
         public Transform()
