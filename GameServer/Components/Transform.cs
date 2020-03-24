@@ -14,8 +14,8 @@ namespace GameServer.Components
         {
             pos = new Vector2(0, 0);
             heading = new Vector2(0, 0);
-            List<float> times = new List<float>();
-            List<Vector2> velocities = new List<Vector2>();
+            times = new List<float>();
+            velocities = new List<Vector2>();
         }
 
         public Transform()
@@ -33,12 +33,11 @@ namespace GameServer.Components
         }
 
 
-        void update(float dt)
+        public override void Update(float dt)
         {
             //Normalement pas bugué ^:)^
             float remaining_time = dt;
             //TODO add speed factor (altered by velocity heading difference)
-           
             while (remaining_time > 0 && times.Count > 0) {
                 if (remaining_time > times[0])
                 {
@@ -63,7 +62,6 @@ namespace GameServer.Components
                     break;
                 }
             }
-
         }
         public void setHeading(Vector2 heading_i){
             heading = heading_i;
@@ -83,6 +81,11 @@ namespace GameServer.Components
         public void setPosition(Vector2 pos)
         {
             this.pos = pos;
+        }
+
+        public Vector2 getPosition()
+        {
+            return pos;
         }
 
         Vector2 pos;

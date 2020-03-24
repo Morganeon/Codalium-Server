@@ -56,6 +56,8 @@ namespace GameServer
 
         public override void Routine(float deltatime)
         {
+            
+            // Application des intentions
             foreach (Client c in clients)
             {
                 for (int i = 0; i < Client.nbActions; i++)
@@ -63,10 +65,21 @@ namespace GameServer
 
                 c.NullActions();
             }
-
+            // Mise à jour des joueurs
             foreach (Client c in clients)
             {
                 c.transform.Update(deltatime);
+            }
+            // Envoi des mises à jours
+            foreach (Client c in clients)
+            {
+                ByteMessage msg = new ByteMessage();
+                msg.WriteTag("UPD");
+                msg.WriteInt(c.id);
+                msg.WriteFloat(c.transform.getPosition().X);
+                msg.WriteFloat(c.transform.getPosition().Y);
+                foreach (Client c2 in clients) c2.SendMessage(msg);
+
             }
         }
 

@@ -37,7 +37,7 @@ namespace GameServer
                     ok.WriteFloat(x); // x
                     ok.WriteFloat(z); // z
                     c.id = id;
-                    c.transform.setPosition(Vector2(x, y));
+                    c.transform.setPosition(new Vector2(x, z));
                     id++;
                     c.SendMessage(ok);
                     //c.Load();

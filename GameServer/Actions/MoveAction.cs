@@ -62,7 +62,6 @@ namespace GameServer.Actions
             {
                 moves.Add(new Vector2(dx[i], dy[i]));
             }
-
             c.transform.setSegment(moves,time);
         }
     }
