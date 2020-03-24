@@ -12,7 +12,18 @@ namespace GameServer.Components
 
         public Transform()
         {
+            pos.X = 0;
+            pos.Y = 0;
+            heading.X = 0;
+            heading.Y = 0;
+        }
 
+
+        public Transform(Vector2 pos_i, Vector2 heading_i, float speed_i)
+        {
+            pos = pos_i;
+            heading = heading_i;
+            speed = speed_i;
         }
 
 
