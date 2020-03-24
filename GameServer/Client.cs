@@ -24,9 +24,13 @@ namespace GameServer
         public const int nbActions = 2;
         public Actions.Action[] actions;
 
+        public Components.Transform transform;
+
         public Client(TcpClient client, SslStream stream)
         {
             actions = new Actions.Action[nbActions];
+            transform = new Components.Transform();
+            transform.Awake();
             this.client = client;
             this.stream = stream;
             HeartBeat();

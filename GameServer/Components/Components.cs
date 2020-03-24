@@ -12,6 +12,11 @@ namespace GameServer.Components
         {
 
         }
+
+        public virtual void Awake()
+        {
+
+        }
     }
 
 }

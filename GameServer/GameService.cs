@@ -30,14 +30,24 @@ namespace GameServer
             switch (byteMessage.ReadTag())
             {
                 
-                case "MOV": // Positional update
+                case "OMV": // Movement intent
                     {
                         int id = byteMessage.ReadInt();
-                        foreach (Client c2 in clients)
+                        int segments = byteMessage.ReadInt();
+                        List<float> dx = new List<float>();
+                        List<float> dy = new List<float>();
+                        List<float> rx = new List<float>();
+                        List<float> ry = new List<float>();
+                        List<float> time = new List<float>();
+                        for (int i=0;i<segments;i++)
                         {
-                            // [TODO] : Broadcasting update as is, might wanna check for valid data.
-                            c2.SendMessage(byteMessage);
+                            dx.Add(byteMessage.ReadFloat());
+                            dy.Add(byteMessage.ReadFloat());
+                            rx.Add(byteMessage.ReadFloat());
+                            ry.Add(byteMessage.ReadFloat());
+                            time.Add(byteMessage.ReadFloat());
                         }
+                        c.actions[0] = new Actions.MoveAction(dx, dy, rx, ry, time);
                     }
                     break;
                 
@@ -49,9 +59,14 @@ namespace GameServer
             foreach (Client c in clients)
             {
                 for (int i = 0; i < Client.nbActions; i++)
-                    if (c.actions[i] != null) c.actions[i].Execute();
+                    if (c.actions[i] != null) c.actions[i].Execute(c);
 
                 c.NullActions();
+            }
+
+            foreach (Client c in clients)
+            {
+                c.transform.Update(deltatime);
             }
         }
 

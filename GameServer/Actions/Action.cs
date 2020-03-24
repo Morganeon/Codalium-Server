@@ -9,7 +9,7 @@ namespace GameServer.Actions
     public class Action
     {
 
-        public virtual void Execute()
+        public virtual void Execute(Client c)
         {
 
         }

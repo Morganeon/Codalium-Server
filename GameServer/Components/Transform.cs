@@ -10,6 +10,14 @@ namespace GameServer.Components
     public class Transform : Component
     {
 
+        public override void Awake()
+        {
+            pos = new Vector2(0, 0);
+            heading = new Vector2(0, 0);
+            List<float> times = new List<float>();
+            List<Vector2> velocities = new List<Vector2>();
+        }
+
         public Transform()
         {
             pos = new Vector2(0, 0);
@@ -31,7 +39,7 @@ namespace GameServer.Components
             float remaining_time = dt;
             //TODO add speed factor (altered by velocity heading difference)
            
-            while (remaining_time > 0) {
+            while (remaining_time > 0 && times.Count > 0) {
                 if (remaining_time > times[0])
                 {
                     remaining_time -= times[0];
@@ -58,18 +66,23 @@ namespace GameServer.Components
 
         }
         public void setHeading(Vector2 heading_i){
-            heading = new Vector2(heading_i.X,heading_i.Y);
+            heading = heading_i;
         }
 
         public void setSegment(List<Vector2> velocities_i, List<float> time_i)
         {
-            times = time_i.ToList(); // [s]
-            velocities = velocities_i.ToList();
+            times = time_i;
+            velocities = velocities_i;
         }
 
         public void setSpeed(float speed_i)
         {
             speed = speed_i;
+        }
+
+        public void setPosition(Vector2 pos)
+        {
+            this.pos = pos;
         }
 
         Vector2 pos;

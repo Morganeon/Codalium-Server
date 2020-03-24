@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -39,6 +40,7 @@ namespace GameServer.Actions
 
             this.dx = dx;
             this.dy = dy;
+            
             for (int i = 0; i < dx.Count; i++)
             {
                 float magnitude = (float)Math.Sqrt(dx[i] * dx[i] + dy[i] * dy[i]);
@@ -53,9 +55,15 @@ namespace GameServer.Actions
         }
 
 
-        public override void Execute()
+        public override void Execute(Client c)
         {
-            
+            List<Vector2> moves = new List<Vector2>();
+            for (int i = 0; i < dx.Count; i++)
+            {
+                moves.Add(new Vector2(dx[i], dy[i]));
+            }
+
+            c.transform.setSegment(moves,time);
         }
     }
 }

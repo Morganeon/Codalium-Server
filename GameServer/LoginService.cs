@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Numerics;
 
 namespace GameServer
 {
@@ -31,7 +32,12 @@ namespace GameServer
                     ByteMessage ok = new ByteMessage();
                     ok.WriteTag("LOK");
                     ok.WriteInt(id);
+                    var x = 3.0f;
+                    var z = 3.0f;
+                    ok.WriteFloat(x); // x
+                    ok.WriteFloat(z); // z
                     c.id = id;
+                    c.transform.setPosition(Vector2(x, y));
                     id++;
                     c.SendMessage(ok);
                     //c.Load();
