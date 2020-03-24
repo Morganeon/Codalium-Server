@@ -12,17 +12,15 @@ namespace GameServer.Components
 
         public Transform()
         {
-            pos.X = 0;
-            pos.Y = 0;
-            heading.X = 0;
-            heading.Y = 0;
+            pos = new Vector2(0, 0);
+            heading = new Vector2(0, 0);
         }
 
 
         public Transform(Vector2 pos_i, Vector2 heading_i, float speed_i)
         {
-            pos = pos_i;
-            heading = heading_i;
+            pos = new Vector2(pos_i.X, pos.Y);
+            heading = new Vector2(heading_i.X,heading_i.Y);
             speed = speed_i;
         }
 
@@ -60,7 +58,18 @@ namespace GameServer.Components
 
         }
         public void setHeading(Vector2 heading_i){
-            heading = heading_i;
+            heading = new Vector2(heading_i.X,heading_i.Y);
+        }
+
+        public void setSegment(List<Vector2> velocities_i, List<float> time_i)
+        {
+            times = time_i.ToList(); // [s]
+            velocities = velocities_i.ToList();
+        }
+
+        public void setSpeed(float speed_i)
+        {
+            speed = speed_i;
         }
 
         Vector2 pos;
