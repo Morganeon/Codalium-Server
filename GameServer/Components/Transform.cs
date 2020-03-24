@@ -4,11 +4,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Numerics;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace GameServer.Components
 {
-    public class Transform : Component
+    public class Transform : NetworkComponent
     {
+
+        float epsilon = 0.000001f;
+
+        Vector2 pos { get; set; }
+
+        Vector2 heading { get; set; }
+        float speed { get; set; }
+
+
+
+        List<float> times; // [s]
+
+        List<Vector2> velocities;
+
 
         public override void Awake()
         {
@@ -88,13 +104,19 @@ namespace GameServer.Components
             return pos;
         }
 
-        Vector2 pos;
-        Vector2 heading;
+        public override string serialize()
+        {
+            string ser = this.startJsonString();
+            ser += this.valueToJsonFormat("px", pos.X.ToString());
+            ser += this.valueToJsonFormat("py", pos.Y.ToString());
+            ser += this.valueToJsonFormat("rx", heading.X.ToString());
+            ser += this.valueToJsonFormat("ry", heading.Y.ToString());
+            ser += this.valueToJsonFormat("v", speed.ToString());
+            ser += this.endJsonString();
+            return ser;
+        }
 
-        List<float> times; // [s]
-        List<Vector2> velocities;
 
-        float epsilon = 0.000001f;
-        float speed = 1.0f;//GL
+
     }
 }
