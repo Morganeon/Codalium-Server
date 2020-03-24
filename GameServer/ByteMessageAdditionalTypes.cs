@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Text.Json;
 
 namespace GameServer
 {
@@ -28,8 +27,6 @@ namespace GameServer
             b = ReadFloat();
             a = ReadFloat();
             rotspeed = ReadFloat();
-            string jsonString;
-            jsonString = JsonSerializer.Serialize(rotspeed);
         }
 
         public void WritePosRot(float x, float y, float z, float rx, float ry, float rz)
