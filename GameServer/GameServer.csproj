@@ -93,6 +93,7 @@
     <Compile Include="ByteMessageAdditionalTypes.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="Components\Components.cs" />
+    <Compile Include="Components\NetworkComponent.cs" />
     <Compile Include="Components\Transform.cs" />
     <Compile Include="GameService.cs" />
     <Compile Include="LoginService.cs" />
