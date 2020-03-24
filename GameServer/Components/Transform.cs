@@ -15,13 +15,15 @@ namespace GameServer.Components
 
         }
 
-            
+
         void update(float dt)
         {
             //Normalement pas bugué ^:)^
             float remaining_time = dt;
+            //TODO add speed factor (altered by velocity heading difference)
+           
             while (remaining_time > 0) {
-                if(remaining_time > times[0])
+                if (remaining_time > times[0])
                 {
                     remaining_time -= times[0];
                     pos += velocities[0] * times[0] * speed;
@@ -44,8 +46,11 @@ namespace GameServer.Components
                     break;
                 }
             }
-        }
 
+        }
+        public void setHeading(Vector2 heading_i){
+            heading = heading_i;
+        }
 
         Vector2 pos;
         Vector2 heading;
@@ -54,6 +59,6 @@ namespace GameServer.Components
         List<Vector2> velocities;
 
         float epsilon = 0.000001f;
-        float speed = 10000001f;//GL
+        float speed = 1.0f;//GL
     }
 }
