@@ -50,6 +50,16 @@ namespace GameServer
             stream.Read(bytes, 0, dataLenght);
         }
 
+        public ByteMessage(System.Net.Sockets.NetworkStream stream)
+        {
+            byte[] b_dataLenght = new byte[4];
+            stream.Read(b_dataLenght, 0, 4);
+            int dataLenght = BitConverter.ToInt32(b_dataLenght, 0);
+            bytes = new byte[dataLenght];
+
+            stream.Read(bytes, 0, dataLenght);
+        }
+
         public ByteMessage(string str)
         {
             Load(str);
