@@ -24,13 +24,24 @@ namespace GameServer.Components
         {
             return "}";
         }
+        protected string valueName(string name)
+        {
+            return "\"" + name + "\"" + ": ";
+        }
         protected string valueToJsonFormat(string name, string value)
         {
-            return name + ":" + value +"\n";
+            return valueName(name) + "\""+value +"\"" + "\n";
         }
 
+        protected string valueToJsonFormat(string name, int value)
+        {
+            return valueName(name) + value + "\n";
+        }
 
-
+        protected string valueToJsonFormat(string name, float value)
+        {
+            return valueName(name) + value + "\n";
+        }
     }
 
 
