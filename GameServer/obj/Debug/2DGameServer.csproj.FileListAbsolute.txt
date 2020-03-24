@@ -1,7 +1,0 @@
-C:\Users\morga\source\repos\2DGameServer\2DGameServer\obj\Debug\2DGameServer.csprojAssemblyReference.cache
-C:\Users\morga\source\repos\2DGameServer\2DGameServer\obj\Debug\2DGameServer.csproj.CoreCompileInputs.cache
-C:\Users\morga\source\repos\2DGameServer\2DGameServer\bin\Debug\2DGameServer.exe.config
-C:\Users\morga\source\repos\2DGameServer\2DGameServer\bin\Debug\2DGameServer.exe
-C:\Users\morga\source\repos\2DGameServer\2DGameServer\bin\Debug\2DGameServer.pdb
-C:\Users\morga\source\repos\2DGameServer\2DGameServer\obj\Debug\2DGameServer.exe
-C:\Users\morga\source\repos\2DGameServer\2DGameServer\obj\Debug\2DGameServer.pdb

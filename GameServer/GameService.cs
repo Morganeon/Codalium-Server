@@ -29,7 +29,7 @@ namespace GameServer
 
             switch (byteMessage.ReadTag())
             {
-                /*
+                
                 case "MOV": // Positional update
                     {
                         int id = byteMessage.ReadInt();
@@ -40,7 +40,16 @@ namespace GameServer
                         }
                     }
                     break;
-                */
+                
+            }
+        }
+
+        public override void Routine(float deltatime)
+        {
+            foreach (Client c in clients)
+            {
+                for (int i = 0; i < Client.nbActions; i++)
+                    c.actions[i].Execute();
             }
         }
 

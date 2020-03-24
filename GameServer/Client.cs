@@ -21,8 +21,12 @@ namespace GameServer
         public int id;
         public long rid=-1;
 
+        public const int nbActions = 2;
+        public Actions.Action[] actions;
+
         public Client(TcpClient client, SslStream stream)
         {
+            actions = new Actions.Action[nbActions];
             this.client = client;
             this.stream = stream;
             HeartBeat();
@@ -36,6 +40,11 @@ namespace GameServer
         public void ClientSideSSL(string targetHost, X509CertificateCollection clientCertificates, SslProtocols enabledSslProtocols, bool checkCertificateRevocation)
         {
             stream.AuthenticateAsClient(targetHost, clientCertificates, enabledSslProtocols, checkCertificateRevocation);
+        }
+
+        public void NullActions()
+        {
+            for (int i = 0; i < nbActions; i++) actions[nbActions] = null;
         }
 
         public void SendMessage(ByteMessage msg)
