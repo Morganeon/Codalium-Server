@@ -50,6 +50,12 @@ namespace GameServer
                         c.actions[0] = new Actions.MoveAction(dx, dy, rx, ry, time);
                     }
                     break;
+
+                case "PNG":
+                    {
+                        c.HeartBeat();
+                    }
+                    break;
                 
             }
         }
