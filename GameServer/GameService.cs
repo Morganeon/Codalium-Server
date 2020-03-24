@@ -49,7 +49,9 @@ namespace GameServer
             foreach (Client c in clients)
             {
                 for (int i = 0; i < Client.nbActions; i++)
-                    c.actions[i].Execute();
+                    if (c.actions[i] != null) c.actions[i].Execute();
+
+                c.NullActions();
             }
         }
 

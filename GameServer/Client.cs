@@ -44,7 +44,7 @@ namespace GameServer
 
         public void NullActions()
         {
-            for (int i = 0; i < nbActions; i++) actions[nbActions] = null;
+            for (int i = 0; i < nbActions; i++) actions[i] = null;
         }
 
         public void SendMessage(ByteMessage msg)
