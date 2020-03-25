@@ -30,6 +30,7 @@ namespace GameServer.Components
             heading = new Vector2(0, 0);
             times = new List<float>();
             velocities = new List<Vector2>();
+            speed = 1.0f;
         }
 
         public Transform()
@@ -51,28 +52,20 @@ namespace GameServer.Components
         {
             //Normalement pas bugué ^:)^
             float remaining_time = dt;
-            //TODO add speed factor (altered by velocity heading difference)
-            while (remaining_time > 0 && times.Count > 0) {
-                if (remaining_time > times[0])
+            // [TODO] add speed factor (altered by velocity heading difference)
+            while (remaining_time > 0 && times.Count > 0)
+            {
+                if (remaining_time >= times[0])
                 {
                     remaining_time -= times[0];
                     pos += velocities[0] * times[0] * speed;
                     times.RemoveAt(0);
                     velocities.RemoveAt(0);
-                    if (times.Count == 0)
-                    {
-                        break;
-                    }
                 }
                 else
                 {
                     times[0] -= remaining_time;
                     pos += velocities[0] * remaining_time * speed;
-                    if (times[0] < epsilon)
-                    {
-                        times.RemoveAt(0);
-                        velocities.RemoveAt(0);
-                    }
                     break;
                 }
             }
