@@ -77,6 +77,31 @@ namespace GameServer
                 c.transform.Update(deltatime);
             }
             // Envoi des mises à jours
+            ByteMessage snapshot = new ByteMessage();
+            snapshot.WriteTag("SNP");
+            snapshot.WriteInt(clients.Count);
+
+            // For Each Client
+            foreach (Client c in clients)
+            {
+                snapshot.WriteInt(c.id);
+                snapshot.WriteFloat(c.transform.getPosition().X);
+                snapshot.WriteFloat(c.transform.getPosition().Y);
+            }
+
+            // For Each Mob
+
+            // For Each AoE
+
+            // Send!
+
+            foreach (Client c in clients)
+            {
+                c.SendMessage(snapshot);
+            }
+
+            // Old update
+            /*
             foreach (Client c in clients)
             {
                 ByteMessage msg = new ByteMessage();
@@ -86,7 +111,7 @@ namespace GameServer
                 msg.WriteFloat(c.transform.getPosition().Y);
                 foreach (Client c2 in clients) c2.SendMessage(msg);
 
-            }
+            }*/
         }
 
 
@@ -95,16 +120,20 @@ namespace GameServer
             ByteMessage msg = new ByteMessage();
             msg.WriteTag("NEW");
             msg.WriteInt(c.id);
-
-            foreach( Client c2 in clients)
+            msg.WriteFloat(1.0f);
+            msg.WriteFloat(1.0f);
+            foreach ( Client c2 in clients)
             {
+                c2.SendMessage(msg);
                 // Create every player pawns in the incoming player's context;
                 ByteMessage msg2 = new ByteMessage();
                 msg2.WriteTag("NEW");
                 msg2.WriteInt(c2.id);
+                msg2.WriteFloat(c2.transform.getPosition().X);
+                msg2.WriteFloat(c2.transform.getPosition().Y);
                 c.SendMessage(msg2);
                 // Create new player in every other player's context;
-                c2.SendMessage(msg);
+                
             }
         }
 

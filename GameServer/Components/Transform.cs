@@ -7,7 +7,7 @@ using System.Numerics;
 
 namespace GameServer.Components
 {
-    public class Transform : NetworkComponent
+    public class Transform : Component
     {
 
         float epsilon = 0.000001f;
@@ -94,20 +94,6 @@ namespace GameServer.Components
         {
             return pos;
         }
-
-        public override string serialize()
-        {
-            string ser = this.startJsonString();
-            ser += this.valueToJsonFormat("px", pos.X.ToString());
-            ser += this.valueToJsonFormat("py", pos.Y.ToString());
-            ser += this.valueToJsonFormat("rx", heading.X.ToString());
-            ser += this.valueToJsonFormat("ry", heading.Y.ToString());
-            ser += this.valueToJsonFormat("v", speed.ToString());
-            ser += this.endJsonString();
-            return ser;
-        }
-
-
 
     }
 }
