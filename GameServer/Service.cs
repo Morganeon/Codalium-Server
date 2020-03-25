@@ -49,7 +49,7 @@ namespace GameServer
                     }
                 }
                 
-                while((float)(DateTime.Now.Ticks - lastTick) / (float)TimeSpan.TicksPerMillisecond < 0.01)
+                while((float)(DateTime.Now.Ticks - lastTick) / (float)TimeSpan.TicksPerMillisecond < 30)
                 {
 
                 }

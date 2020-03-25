@@ -6,16 +6,28 @@ using System.Text;
 using System.Threading.Tasks;
 
 using GameServer.NPCs;
+using GameServer.AOEs;
 
 namespace GameServer
 {
     public class GameService : Service
     {
-        float tickDelta = 0;
-        float tickTimer = 1.0f/128.0f;
+        List<NPC> npcs;
+        List<AOE> aoes;
+
         public override void Initialize()
         {
             base.Initialize();
+
+            npcs = new List<NPC>();
+            NPC npc = new NPC();
+            npc.transform.setPosition(new Vector2(5.0f, -5.0f));
+            npcs.Add(npc);
+
+            aoes = new List<AOE>();
+            AOE aoe = new AOE();
+            aoe.transform.setPosition(new Vector2(-5.0f, 5.0f));
+            aoes.Add(aoe);
 
             serviceName = "GAME";
         }
@@ -79,9 +91,10 @@ namespace GameServer
             // Envoi des mises à jours
             ByteMessage snapshot = new ByteMessage();
             snapshot.WriteTag("SNP");
-            snapshot.WriteInt(clients.Count);
+
 
             // For Each Client
+            snapshot.WriteInt(clients.Count);
             foreach (Client c in clients)
             {
                 snapshot.WriteInt(c.id);
@@ -90,8 +103,22 @@ namespace GameServer
             }
 
             // For Each Mob
+            snapshot.WriteInt(npcs.Count);
+            foreach (NPC c in npcs)
+            {
+                snapshot.WriteInt(c.id);
+                snapshot.WriteFloat(c.transform.getPosition().X);
+                snapshot.WriteFloat(c.transform.getPosition().Y);
+            }
 
             // For Each AoE
+            snapshot.WriteInt(aoes.Count);
+            foreach (AOE c in aoes)
+            {
+                snapshot.WriteInt(c.id);
+                snapshot.WriteFloat(c.transform.getPosition().X);
+                snapshot.WriteFloat(c.transform.getPosition().Y);
+            }
 
             // Send!
 
@@ -122,12 +149,13 @@ namespace GameServer
             msg.WriteInt(c.id);
             msg.WriteFloat(1.0f);
             msg.WriteFloat(1.0f);
+            // Player generation
             foreach ( Client c2 in clients)
             {
                 c2.SendMessage(msg);
                 // Create every player pawns in the incoming player's context;
                 ByteMessage msg2 = new ByteMessage();
-                msg2.WriteTag("NEW");
+                msg2.WriteTag("NEP");
                 msg2.WriteInt(c2.id);
                 msg2.WriteFloat(c2.transform.getPosition().X);
                 msg2.WriteFloat(c2.transform.getPosition().Y);
@@ -135,12 +163,37 @@ namespace GameServer
                 // Create new player in every other player's context;
                 
             }
+
+            // NPCs generation
+            foreach (NPC npc in npcs)
+            {
+                ByteMessage msg2 = new ByteMessage();
+                msg2.WriteTag("NEN");
+                msg2.WriteInt(npc.id);
+                msg2.WriteFloat(npc.transform.getPosition().X);
+                msg2.WriteFloat(npc.transform.getPosition().Y);
+                c.SendMessage(msg2);
+
+            }
+
+            // AoE generations
+
+            foreach (AOE aoe in aoes)
+            {
+                ByteMessage msg2 = new ByteMessage();
+                msg2.WriteTag("NEA");
+                msg2.WriteInt(aoe.id);
+                msg2.WriteFloat(aoe.transform.getPosition().X);
+                msg2.WriteFloat(aoe.transform.getPosition().Y);
+                c.SendMessage(msg2);
+
+            }
         }
 
         public override void OnServiceLeave(Client c)
         {
             ByteMessage msg = new ByteMessage();
-            msg.WriteTag("DEL");
+            msg.WriteTag("DEP");
             msg.WriteInt(c.id);
 
             // Delete client in every player's context

@@ -5,14 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Numerics;
 
-namespace GameServer.NPCs
+namespace GameServer.AOEs
 {
-    class NPC
+    public class AOE
     {
         public int id;
         public Components.Transform transform;
 
-        public NPC()
+        public AOE()
         {
             Awake();
         }
@@ -26,6 +26,5 @@ namespace GameServer.NPCs
         {
             transform.Update(deltatime);
         }
-
     }
 }
