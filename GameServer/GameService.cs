@@ -26,7 +26,7 @@ namespace GameServer
 
             aoes = new List<AOE>();
             AOE aoe = new AOE();
-            aoe.transform.setPosition(new Vector2(-5.0f, 5.0f));
+            aoe.transform.setPosition(new Vector2(-4.0f, 4.0f));
             aoes.Add(aoe);
 
             serviceName = "GAME";
@@ -145,7 +145,7 @@ namespace GameServer
         public override void OnServiceEnter(Client c)
         {
             ByteMessage msg = new ByteMessage();
-            msg.WriteTag("NEW");
+            msg.WriteTag("NEP");
             msg.WriteInt(c.id);
             msg.WriteFloat(1.0f);
             msg.WriteFloat(1.0f);

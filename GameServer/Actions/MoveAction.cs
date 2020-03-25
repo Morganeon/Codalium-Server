@@ -24,15 +24,23 @@ namespace GameServer.Actions
             this.dy = dy;
             for (int i=0;i< dx.Count;i++)
             {
+                if (float.IsNaN(dx[i]) || float.IsInfinity(dx[i])) dx[i] = 0;
+                if (float.IsNaN(dy[i]) || float.IsInfinity(dy[i])) dy[i] = 0;
+                if (float.IsNaN(rx[i]) || float.IsInfinity(rx[i])) rx[i] = 0;
+                if (float.IsNaN(ry[i]) || float.IsInfinity(ry[i])) ry[i] = 0;
+                if (float.IsNaN(time[i]) || float.IsInfinity(time[i]) || time[i] <= 0) time[i] = 0;
                 float magnitude = (float)Math.Sqrt(dx[i] * dx[i] + dy[i] * dy[i]);
-                this.dx[i] /= magnitude;
-                this.dy[i] /= magnitude;
+                if (magnitude!=0)
+                {
+                    this.dx[i] /= magnitude;
+                    this.dy[i] /= magnitude;
+                }
+                
             }
 
             this.rx = this.dx;
             this.ry = this.dy;
-            
-            this.time = time;
+                this.time = time;
         }
 
         public MoveAction(List<float> dx, List<float> dy, List<float> rx, List<float> ry, List<float> time)
@@ -43,14 +51,23 @@ namespace GameServer.Actions
             
             for (int i = 0; i < dx.Count; i++)
             {
+                if (float.IsNaN(dx[i]) || float.IsInfinity(dx[i])) dx[i] = 0;
+                if (float.IsNaN(dy[i]) || float.IsInfinity(dy[i])) dy[i] = 0;
+                if (float.IsNaN(rx[i]) || float.IsInfinity(rx[i])) rx[i] = 0;
+                if (float.IsNaN(ry[i]) || float.IsInfinity(ry[i])) ry[i] = 0;
+                if (float.IsNaN(time[i]) || float.IsInfinity(time[i]) || time[i] <=0) time[i] = 0;
+
                 float magnitude = (float)Math.Sqrt(dx[i] * dx[i] + dy[i] * dy[i]);
-                this.dx[i] /= magnitude;
-                this.dy[i] /= magnitude;
+                if (magnitude != 0)
+                {
+                    this.dx[i] /= magnitude;
+                    this.dy[i] /= magnitude;
+                }
+
             }
 
             this.rx = rx;
             this.ry = ry;
-
             this.time = time;
         }
 
