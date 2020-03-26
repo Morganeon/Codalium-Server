@@ -25,6 +25,9 @@ namespace GameServer
         protected long loopduration;
         protected int tickNumber = 0;
 
+        protected int npcIdCount=0;
+        protected int aoeIdCount=0;
+
         public virtual void Run()
         {
             Initialize();
@@ -155,6 +158,18 @@ namespace GameServer
                 incomingClients.Clear();
             }
             listProtector.ReleaseMutex();
+        }
+
+        public int GetNpcUniqueId()
+        {
+            npcIdCount++;
+            return npcIdCount;
+        }
+
+        public int GetAoeUniqueId()
+        {
+            aoeIdCount++;
+            return aoeIdCount;
         }
     }
 }

@@ -20,14 +20,17 @@ namespace GameServer
             base.Initialize();
 
             npcs = new List<NPC>();
-            NPC npc = new NPC();
+            NPCVner npc = new NPCVner(this);
             npc.transform.setPosition(new Vector2(5.0f, -5.0f));
             npcs.Add(npc);
 
+            
             aoes = new List<AOE>();
+            /*
             AOE aoe = new AOE();
             aoe.transform.setPosition(new Vector2(-4.0f, 4.0f));
             aoes.Add(aoe);
+            */
 
             serviceName = "GAME";
         }
@@ -87,6 +90,16 @@ namespace GameServer
             foreach (Client c in clients)
             {
                 c.transform.Update(deltatime);
+            }
+            // Mise à jour des npcs
+            foreach (NPC c in npcs)
+            {
+                c.Update(deltatime, ref clients, ref npcs, ref aoes);
+            }
+            // Mise à jour des aoes
+            foreach (AOE c in aoes)
+            {
+                c.Update(deltatime, ref clients, ref npcs, ref aoes);
             }
             // Envoi des mises à jours
             ByteMessage snapshot = new ByteMessage();

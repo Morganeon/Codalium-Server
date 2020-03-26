@@ -26,6 +26,7 @@ namespace GameServer.Components
 
         public override void Awake()
         {
+            
             pos = new Vector2(0, 0);
             heading = new Vector2(0, 0);
             times = new List<float>();
@@ -35,8 +36,7 @@ namespace GameServer.Components
 
         public Transform()
         {
-            pos = new Vector2(0, 0);
-            heading = new Vector2(0, 0);
+            Awake();
         }
 
 
